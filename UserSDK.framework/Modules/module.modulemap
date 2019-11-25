@@ -1,5 +1,5 @@
 framework module UserSDK {
-  umbrella header "UserSDK-umbrella.h"
+  umbrella header "UserSDK.h"
 
   export *
   module * { export * }
