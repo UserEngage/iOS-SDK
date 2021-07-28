@@ -1,0 +1,11 @@
+framework module UserSDK {
+  umbrella header "UserSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module UserSDK.Swift {
+    header "UserSDK-Swift.h"
+    requires objc
+}
