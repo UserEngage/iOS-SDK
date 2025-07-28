@@ -1,7 +1,7 @@
 # local testing podspec
 
 Pod::Spec.new do |spec|
-    version                     = '0.7.2'
+    version                     = '0.7.3'
     swift_version               = '5.10'
 
     spec.name                   = "UserSDK"
@@ -9,17 +9,18 @@ Pod::Spec.new do |spec|
     spec.summary                = "SDK for user.com"
     spec.homepage               = "http://user.com"
     spec.license                = { :type => "MIT", :file => "LICENSE" }
-    spec.authors                = { "User" => "http://user.com" }
-    
+    spec.author                 = { "Future Mind" => "hello@futuremind.com" }
     spec.platform               = :ios, "13.0"
     spec.swift_version          = "#{swift_version}"
 
     spec.module_name            = "UserSDK"
-    spec.source                 = { :git => "git@github.com:UserEngage/iOS-SDK.git", :tag => "#{version}" }
+    spec.source                 = { :path => __dir__ }
+    spec.source_files           = "UserSDK/*.{h,swift}"
     spec.vendored_frameworks    = 'UserSDK.xcframework'
     spec.static_framework       = true
+
     spec.frameworks             = 'Foundation', 'UIKit', 'CoreTelephony', 'AdSupport', 'SystemConfiguration', 'UserNotifications'
-    
+    spec.dependency 'Firebase'
     spec.dependency 'FirebaseCore'
     spec.dependency 'FirebaseMessaging'
     spec.dependency 'Gifu', '3.3.1'
