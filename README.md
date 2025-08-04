@@ -50,6 +50,9 @@ Where FontResolver is a type conforming to FontResoving. As always keep in mind 
 
 ## Changelog
 
+### 0.7.3
+Bump compiler version
+
 ### 0.7.2
 Fixed issue with Gifu dependency 
 
