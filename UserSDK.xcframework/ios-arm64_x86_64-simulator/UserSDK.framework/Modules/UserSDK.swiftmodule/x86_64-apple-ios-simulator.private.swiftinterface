@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name UserSDK
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name UserSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import AdSupport
 import SystemConfiguration.CaptiveNetwork
 import CoreTelephony
@@ -95,6 +96,7 @@ extension UserSDK {
     case refund
     case promoClick
     public init?(rawValue: Swift.Int)
+    @available(iOSApplicationExtension, unavailable)
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
       get
@@ -111,6 +113,7 @@ extension UserSDK {
     case phone
     case userId
     public init?(rawValue: Swift.String)
+    @available(iOSApplicationExtension, unavailable)
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -200,10 +203,10 @@ public protocol TrackableView {
 }
 @available(iOSApplicationExtension, unavailable)
 extension UIKit.UIViewController : TrackableView {
-  @_Concurrency.MainActor(unsafe) public var screenName: Swift.String {
+  @_Concurrency.MainActor @preconcurrency public var screenName: Swift.String {
     get
   }
-  @objc @_Concurrency.MainActor(unsafe) dynamic public func trackScreen()
+  @objc @_Concurrency.MainActor @preconcurrency dynamic public func trackScreen()
 }
 @available(iOSApplicationExtension, unavailable)
 extension EventType : Swift.Equatable {}
