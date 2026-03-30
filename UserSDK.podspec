@@ -1,7 +1,7 @@
 # local testing podspec
 
 Pod::Spec.new do |spec|
-    version                     = '0.7.3'
+    version                     = '0.7.5'
     swift_version               = '5.10'
 
     spec.name                   = "UserSDK"
@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
 
     spec.module_name            = "UserSDK"
     spec.source                 = { :git => "git@github.com:UserEngage/iOS-SDK.git", :tag => "#{version}" }
-    spec.vendored_frameworks    = 'UserSDK.xcframework'
+    spec.vendored_frameworks    = 'UserComSDK.xcframework'
     spec.static_framework       = true
     spec.frameworks             = 'Foundation', 'UIKit', 'CoreTelephony', 'AdSupport', 'SystemConfiguration', 'UserNotifications'
     
