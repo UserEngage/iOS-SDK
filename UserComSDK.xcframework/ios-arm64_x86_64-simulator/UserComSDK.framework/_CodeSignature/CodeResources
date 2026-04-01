@@ -26,7 +26,7 @@
 		</data>
 		<key>Headers/UserComSDK-Swift.h</key>
 		<data>
-		CmT66MYf2Jngecp/4+YaP5EEX3w=
+		/0Jw301U0/lHfRB/+aylepeTdyM=
 		</data>
 		<key>Headers/UserComSDK.h</key>
 		<data>
@@ -38,43 +38,43 @@
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		jdRxnnASZR9wAa8+0BeCme81b1s=
+		MRSK9AaOI2x7Vb5jrA+/DJJTjk8=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		cv2VnncwPnuGhYhd5jcZENyfo7A=
+		WuUelwSqONMS8NXx5AvNjMozXRQ=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		g1nQpKBqwyP7fF1KXLS7YAJuhsg=
+		RERdl8YOpyUCOLBHQiJ0R7dEKf4=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		cv2VnncwPnuGhYhd5jcZENyfo7A=
+		WuUelwSqONMS8NXx5AvNjMozXRQ=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		V2j1k3z2v8h9uPv/Z2IXZigW79Y=
+		mKBXAVg+0ivFulDjz2rdsA6/cGk=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		jdRxnnASZR9wAa8+0BeCme81b1s=
+		MRSK9AaOI2x7Vb5jrA+/DJJTjk8=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		y4JQZh52A1OvnhXPIHbkPC0wn5k=
+		IgFkiA4kzqUETFn/rPD8iWtCAlI=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		FTjALeEArljoD6cFz7SQBMxpxhc=
+		2ZN1WZ1L9kk4UvaLa5I6y+IoHhI=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		y4JQZh52A1OvnhXPIHbkPC0wn5k=
+		IgFkiA4kzqUETFn/rPD8iWtCAlI=
 		</data>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		np6feT+0gISk9CQSLqeEmnaRu7c=
+		FgG1aRpcUwi/ysCWgEJvfkAAdAk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -122,7 +122,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RbF2ASL2MzQAMcNsyKDtu8Xm6JZXQJtmjQ0tp9dbCwo=
+			EWceygg5vYv8+cgyC8v698r6ZTLW771Nb3oX/yTfJ74=
 			</data>
 		</dict>
 		<key>Headers/UserComSDK.h</key>
@@ -136,70 +136,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eMw2T4fyzFzUBQb+ZrvfleGNh0oHXS/TwpOGyjsvL6w=
+			D+Tm0NtW/IgLlvRvgvjKNN1QUfVxPSi4WZdHZxSW0+I=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9GROFm0Y16Li6hihnrletRarG7PYAvFeGOKk80Bclgk=
+			AoVfMbH3rwoT8l48b7RkN17fbjrj9wbOuT16HMdvDpA=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6HMedHLNnKO6VVfXUqhYQt/c81IT4UcE94Tg6cyAfNA=
+			F6FLXwjL7PJ6YsVhFMclPq6Bi6Y+UgggSO21xDKwV3E=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9GROFm0Y16Li6hihnrletRarG7PYAvFeGOKk80Bclgk=
+			AoVfMbH3rwoT8l48b7RkN17fbjrj9wbOuT16HMdvDpA=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IUnefh8FNlUjY1idzKGfdCBL9QLxq85IMYtfCElrm6Y=
+			ufomlz3WPfqrFXN+L62FDnXZj1nLZ4+Et2Dee8Fk3Pw=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			eMw2T4fyzFzUBQb+ZrvfleGNh0oHXS/TwpOGyjsvL6w=
+			D+Tm0NtW/IgLlvRvgvjKNN1QUfVxPSi4WZdHZxSW0+I=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xhZ5ooFwzk1o45RSg+diTVb9oZwDkxie2961ZrLuDuA=
+			lACBcnN6LGLm2YzJ3K4GJd4JJzgNieWeKeSA0Ab/AP8=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xawPXT8MChJyrpJyTGAU8CfsfybeRDecbl89m4Ruaa4=
+			S7Qx7reFA5D0jaXloG5Yw04IdLoGMaXEPCA8Q1Is8ls=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xhZ5ooFwzk1o45RSg+diTVb9oZwDkxie2961ZrLuDuA=
+			lACBcnN6LGLm2YzJ3K4GJd4JJzgNieWeKeSA0Ab/AP8=
 			</data>
 		</dict>
 		<key>Modules/UserComSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VADblr5QzA8+DEUegBVEny9JEK2wIaMckOrfc3/dhjE=
+			2d61bcUjCVI3nUxPxJMUMBmTYPyKFyLQOk15MJzMXrs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
