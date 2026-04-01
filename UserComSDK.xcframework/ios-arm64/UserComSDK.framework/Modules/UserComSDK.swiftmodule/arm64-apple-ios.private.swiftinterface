@@ -78,7 +78,7 @@ extension UserComSDK.UserSDK {
   }
   #endif
   @objc public var fontResolver: (any UserComSDK.FontResolving)?
-  @objc public var inAppNotificationClickDelegate: (any UserComSDK.InAppNotificationClickDelegate)?
+  public var inAppNotificationClickDelegate: (any UserComSDK.InAppNotificationClickDelegate)?
   @objc public init(application: UIKit.UIApplication, apiKey: Swift.String, baseURL: Swift.String, shouldTrackActivities: Swift.Bool)
   @objc deinit
 }
@@ -224,8 +224,8 @@ extension UserComSDK.Reachability {
     get
   }
 }
-@objc public protocol InAppNotificationClickDelegate {
-  @objc func inAppNotificationDidClick(url: Foundation.URL) -> Swift.Bool
+public protocol InAppNotificationClickDelegate : AnyObject {
+  func inAppNotificationDidClick(url: Foundation.URL) -> Swift.Bool
 }
 extension Swift.String {
   public var boolValue: Swift.Bool {

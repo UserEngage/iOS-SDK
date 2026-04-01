@@ -1308,21 +1308,20 @@
                     "kind": "TypeNominal",
                     "name": "InAppNotificationClickDelegate",
                     "printedName": "any UserComSDK.InAppNotificationClickDelegate",
-                    "usr": "c:@M@UserComSDK@objc(pl)InAppNotificationClickDelegate"
+                    "usr": "s:10UserComSDK30InAppNotificationClickDelegateP"
                   }
                 ],
                 "usr": "s:Sq"
               }
             ],
             "declKind": "Var",
-            "usr": "c:@M@UserComSDK@objc(cs)UserSDK(py)inAppNotificationClickDelegate",
+            "usr": "s:10UserComSDK0aC0C30inAppNotificationClickDelegateAA02InefgH0_pSgvp",
             "mangledName": "$s10UserComSDK0aC0C30inAppNotificationClickDelegateAA02InefgH0_pSgvp",
             "moduleName": "UserComSDK",
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
               "AccessControl",
-              "ObjC",
               "RawDocComment"
             ],
             "hasStorage": true,
@@ -1341,20 +1340,17 @@
                         "kind": "TypeNominal",
                         "name": "InAppNotificationClickDelegate",
                         "printedName": "any UserComSDK.InAppNotificationClickDelegate",
-                        "usr": "c:@M@UserComSDK@objc(pl)InAppNotificationClickDelegate"
+                        "usr": "s:10UserComSDK30InAppNotificationClickDelegateP"
                       }
                     ],
                     "usr": "s:Sq"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "c:@M@UserComSDK@objc(cs)UserSDK(im)inAppNotificationClickDelegate",
+                "usr": "s:10UserComSDK0aC0C30inAppNotificationClickDelegateAA02InefgH0_pSgvg",
                 "mangledName": "$s10UserComSDK0aC0C30inAppNotificationClickDelegateAA02InefgH0_pSgvg",
                 "moduleName": "UserComSDK",
                 "implicit": true,
-                "declAttributes": [
-                  "ObjC"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -1376,20 +1372,17 @@
                         "kind": "TypeNominal",
                         "name": "InAppNotificationClickDelegate",
                         "printedName": "any UserComSDK.InAppNotificationClickDelegate",
-                        "usr": "c:@M@UserComSDK@objc(pl)InAppNotificationClickDelegate"
+                        "usr": "s:10UserComSDK30InAppNotificationClickDelegateP"
                       }
                     ],
                     "usr": "s:Sq"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "c:@M@UserComSDK@objc(cs)UserSDK(im)setInAppNotificationClickDelegate:",
+                "usr": "s:10UserComSDK0aC0C30inAppNotificationClickDelegateAA02InefgH0_pSgvs",
                 "mangledName": "$s10UserComSDK0aC0C30inAppNotificationClickDelegateAA02InefgH0_pSgvs",
                 "moduleName": "UserComSDK",
                 "implicit": true,
-                "declAttributes": [
-                  "ObjC"
-                ],
                 "accessorKind": "set"
               },
               {
@@ -4899,29 +4892,27 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@UserComSDK@objc(pl)InAppNotificationClickDelegate(im)inAppNotificationDidClickWithUrl:",
+            "usr": "s:10UserComSDK30InAppNotificationClickDelegateP02inef3DidG03urlSb10Foundation3URLV_tF",
             "mangledName": "$s10UserComSDK30InAppNotificationClickDelegateP02inef3DidG03urlSb10Foundation3URLV_tF",
             "moduleName": "UserComSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : UserComSDK.InAppNotificationClickDelegate>",
             "sugared_genericSig": "<Self where Self : UserComSDK.InAppNotificationClickDelegate>",
             "protocolReq": true,
             "declAttributes": [
-              "RawDocComment",
-              "ObjC"
+              "RawDocComment"
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
-        "usr": "c:@M@UserComSDK@objc(pl)InAppNotificationClickDelegate",
+        "usr": "s:10UserComSDK30InAppNotificationClickDelegateP",
         "mangledName": "$s10UserComSDK30InAppNotificationClickDelegateP",
         "moduleName": "UserComSDK",
         "genericSig": "<τ_0_0 : AnyObject>",
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
-          "AccessControl",
-          "ObjC"
+          "AccessControl"
         ],
         "conformances": [
           {
@@ -6579,140 +6570,140 @@
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6608,
+      "offset": 6598,
       "length": 8,
       "value": "1"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6630,
+      "offset": 6620,
       "length": 6,
       "value": "2"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6650,
+      "offset": 6640,
       "length": 16,
       "value": "3"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6680,
+      "offset": 6670,
       "length": 5,
       "value": "4"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6699,
+      "offset": 6689,
       "length": 11,
       "value": "5"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6724,
+      "offset": 6714,
       "length": 8,
       "value": "6"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6746,
+      "offset": 6736,
       "length": 4,
       "value": "7"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6764,
+      "offset": 6754,
       "length": 5,
       "value": "8"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6783,
+      "offset": 6773,
       "length": 6,
       "value": "9"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6803,
+      "offset": 6793,
       "length": 3,
       "value": "10"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6820,
+      "offset": 6810,
       "length": 6,
       "value": "11"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6840,
+      "offset": 6830,
       "length": 8,
       "value": "12"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6862,
+      "offset": 6852,
       "length": 14,
       "value": "13"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6890,
+      "offset": 6880,
       "length": 6,
       "value": "14"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 6910,
+      "offset": 6900,
       "length": 10,
       "value": "15"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 8931,
+      "offset": 8921,
       "length": 12,
       "value": "\"first_name\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 8968,
+      "offset": 8958,
       "length": 11,
       "value": "\"last_name\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 9001,
+      "offset": 8991,
       "length": 7,
       "value": "\"email\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 9030,
+      "offset": 9020,
       "length": 7,
       "value": "\"phone\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 9060,
+      "offset": 9050,
       "length": 9,
       "value": "\"user_id\""
     },

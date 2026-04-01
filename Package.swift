@@ -17,7 +17,7 @@ let package = Package(
         .binaryTarget(
             name: "UserComSDK",
             url: "https://github.com/UserEngage/iOS-SDK/releases/download/0.7.7/UserComSDK.xcframework.zip",
-            checksum: "f26a1260a159e6b44fa38b045e2fb9ff6fcc966e212682ae9a91551d16eda9d8"
+            checksum: "aac3948fcb84632bbecdf4d82781bd6457193cc0aa7d20f92ba674517b0dae8b"
         )
     ]
 )

@@ -315,19 +315,6 @@ SWIFT_PROTOCOL("_TtP10UserComSDK13FontResolving_")
 - (UIFont * _Nullable)resolveFontForName:(NSString * _Nonnull)name size:(CGFloat)size SWIFT_WARN_UNUSED_RESULT;
 @end
 
-@class NSURL;
-SWIFT_PROTOCOL("_TtP10UserComSDK30InAppNotificationClickDelegate_")
-@protocol InAppNotificationClickDelegate
-/// Called when user taps a button in an in-app notification.
-/// \param url The URL associated with the tapped button.
-///
-///
-/// returns:
-/// Return <code>true</code> if you handle the URL yourself.
-/// Return <code>false</code> to let the SDK open it in the browser (default behavior).
-- (BOOL)inAppNotificationDidClickWithUrl:(NSURL * _Nonnull)url SWIFT_WARN_UNUSED_RESULT;
-@end
-
 @class UNMutableNotificationContent;
 @class UNNotificationContent;
 SWIFT_CLASS("_TtC10UserComSDK27NotificationExtensionHelper")
@@ -373,9 +360,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull inAp
 @property (nonatomic, readonly, copy) NSString * _Nullable userId;
 /// App provided object responsile for providing custom font used in in-app messages
 @property (nonatomic, strong) id <FontResolving> _Nullable fontResolver;
-/// Delegate for handling in-app notification button clicks.
-/// If set, the delegate can handle the URL itself and prevent the SDK from opening it in the browser.
-@property (nonatomic, strong) id <InAppNotificationClickDelegate> _Nullable inAppNotificationClickDelegate;
 /// Public SDK initialization method.
 /// \param application Application instance.
 ///
@@ -796,19 +780,6 @@ SWIFT_PROTOCOL("_TtP10UserComSDK13FontResolving_")
 - (UIFont * _Nullable)resolveFontForName:(NSString * _Nonnull)name size:(CGFloat)size SWIFT_WARN_UNUSED_RESULT;
 @end
 
-@class NSURL;
-SWIFT_PROTOCOL("_TtP10UserComSDK30InAppNotificationClickDelegate_")
-@protocol InAppNotificationClickDelegate
-/// Called when user taps a button in an in-app notification.
-/// \param url The URL associated with the tapped button.
-///
-///
-/// returns:
-/// Return <code>true</code> if you handle the URL yourself.
-/// Return <code>false</code> to let the SDK open it in the browser (default behavior).
-- (BOOL)inAppNotificationDidClickWithUrl:(NSURL * _Nonnull)url SWIFT_WARN_UNUSED_RESULT;
-@end
-
 @class UNMutableNotificationContent;
 @class UNNotificationContent;
 SWIFT_CLASS("_TtC10UserComSDK27NotificationExtensionHelper")
@@ -854,9 +825,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull inAp
 @property (nonatomic, readonly, copy) NSString * _Nullable userId;
 /// App provided object responsile for providing custom font used in in-app messages
 @property (nonatomic, strong) id <FontResolving> _Nullable fontResolver;
-/// Delegate for handling in-app notification button clicks.
-/// If set, the delegate can handle the URL itself and prevent the SDK from opening it in the browser.
-@property (nonatomic, strong) id <InAppNotificationClickDelegate> _Nullable inAppNotificationClickDelegate;
 /// Public SDK initialization method.
 /// \param application Application instance.
 ///
