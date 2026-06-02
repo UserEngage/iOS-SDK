@@ -1,19 +1,18 @@
-# Positive User — iOS SDK
+# Positive User iOS SDK
 
-iOS SDK for [Positive User / user.com](https://user.com). Track users, send events, handle
+iOS SDK for [Positive User](https://user.com). Track users, send events, handle
 push notifications and display in-app messages.
 
 > **Naming:** the pod is `UserSDK`, the module you import is `UserComSDK`, and the main class is `UserSDK`.
 
 ---
 
-## 1.0.0 — BYOT (Bring Your Own Token)
+## 1.0.0 Own FCM Token
 
-Starting with **1.0.0** the SDK has **zero external dependencies** — no Firebase, no Gifu.
+Starting with **1.0.0** SDK has **zero external dependencies**.
 
-- **You own Firebase.** The SDK no longer initializes Firebase or claims the messaging delegate.
-  You provide the FCM token to the SDK (see below).
-- **No more auto-prompt.** The SDK only asks for notification permission if *you* call
+- **You own Firebase.** Provide FCM token to the SDK (see below).
+- **No more auto-prompt.** SDK only asks for notification permission if *you* call
   `registerForRemoteNotifications(...)`. If you manage push yourself, it never prompts.
 - **GIFs** in in-app messages are decoded in-SDK via ImageIO.
 
@@ -30,7 +29,7 @@ https://github.com/UserEngage/iOS-SDK.git
 Exact Version: 1.0.0
 ```
 
-No extra dependencies required — the package is self-contained.
+No extra dependencies required, the package is self-contained.
 
 ### CocoaPods
 
@@ -66,7 +65,7 @@ sdk.ping()                            // creates/updates the contact
 
 ---
 
-## FCM token (BYOT)
+## FCM token
 
 You provide the FCM token. Pass it at init, via `setFcmToken(_:)`, or with a ping:
 
