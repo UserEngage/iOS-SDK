@@ -1,12 +1,12 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
-// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name UserComSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+// swift-compiler-version: Apple Swift version 6.3.1 effective-5.10 (swiftlang-6.3.1.1.2 clang-2100.0.123.102)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name UserComSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.1
 import AdSupport
 import SystemConfiguration.CaptiveNetwork
 import CoreTelephony
 import Foundation
-import Gifu
+import ImageIO
 import Swift
 import SystemConfiguration
 import UIKit
@@ -23,39 +23,31 @@ extension UserComSDK.UserSDK {
   @objc dynamic public func sendEvent(name: Swift.String, params: [Swift.String : Any])
   @available(swift, obsoleted: 0.1)
   @objc dynamic public func trackScreen(name: Swift.String)
-  #if compiler(>=5.3) && $NonescapableTypes
   @available(swift, obsoleted: 0.1)
   @objc dynamic public func setUserData(_ userData: [Swift.String : Swift.String], completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   @available(swift, obsoleted: 0.1)
   @objc dynamic public func setCustomUserData(_ customUserData: [Swift.String : Any], completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
   @available(swift, obsoleted: 0.1)
   @objc dynamic public func setCustomUserData(_ customUserData: [Swift.String : Any])
   @available(swift, obsoleted: 0.1)
   @objc dynamic public func logout()
+  @available(swift, obsoleted: 0.1)
+  @objc dynamic public func logout(fcmToken: Swift.String?)
 }
 @_hasMissingDesignatedInitializers @objc public class NotificationExtensionHelper : ObjectiveC.NSObject {
   @objc public static let shared: UserComSDK.NotificationExtensionHelper
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc public func fillNotificationContent(_ content: UserNotifications.UNMutableNotificationContent?, contentHandler: @escaping (UserNotifications.UNNotificationContent) -> Swift.Void)
-  #endif
   @objc deinit
 }
 @objc public protocol FontResolving {
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc func resolveFontFor(name: Swift.String, size: CoreFoundation.CGFloat) -> UIKit.UIFont?
-  #endif
 }
 @available(iOSApplicationExtension, unavailable)
 @objc public class UserSDK : ObjectiveC.NSObject {
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc public static var `default`: UserComSDK.UserSDK? {
     @objc get
     @objc set
   }
-  #endif
   @objc public static var inAppAlertCloseButtonText: Swift.String
   @objc public var apiKey: Swift.String {
     get
@@ -66,33 +58,24 @@ extension UserComSDK.UserSDK {
   @objc public var shouldTrackActivities: Swift.Bool {
     get
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc public var notificationDelegate: (any UserComSDK.RemoteNotificationDelegate)? {
     @objc get
     @objc set
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc public var userId: Swift.String? {
     @objc get
   }
-  #endif
   @objc public var fontResolver: (any UserComSDK.FontResolving)?
   public var inAppNotificationClickDelegate: (any UserComSDK.InAppNotificationClickDelegate)?
-  @objc public init(application: UIKit.UIApplication, apiKey: Swift.String, baseURL: Swift.String, shouldTrackActivities: Swift.Bool)
+  @objc public init(application: UIKit.UIApplication, apiKey: Swift.String, baseURL: Swift.String, shouldTrackActivities: Swift.Bool, fcmToken: Swift.String? = nil)
   @objc deinit
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc(pingWithCompletion:) dynamic public func ping(_ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(pingWithFcmToken:completion:) dynamic public func ping(fcmToken: Swift.String? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  @objc(setFcmToken:) dynamic public func setFcmToken(_ token: Swift.String)
   @objc(sendEventWithName:params:completion:) dynamic public func sendEvent(with name: Swift.String, params: [Swift.String : Any], _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc(trackScreenWithName:completion:) dynamic public func trackScreen(with name: Swift.String, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
@@ -113,18 +96,14 @@ extension UserComSDK.UserSDK {
     case checkoutOption
     case refund
     case promoClick
-    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.Int)
-    #endif
     @available(iOSApplicationExtension, unavailable)
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
       get
     }
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc(sendProductEventWithProductId:eventType:name:productURL:params:completion:) dynamic public func sendProductEvent(_ productId: Swift.String, eventType: UserComSDK.UserSDK.EventType, name: Swift.String? = nil, productURL: Swift.String? = nil, params: [Swift.String : Any]? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
@@ -134,34 +113,24 @@ extension UserComSDK.UserSDK {
     case email
     case phone
     case userId
-    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
-    #endif
     @available(iOSApplicationExtension, unavailable)
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
     }
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   public func setUserData(_ userData: [UserComSDK.UserSDK.UserDataKey : Swift.String?], _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public func setCustomUserData(_ customUserData: [Swift.String : Any?], _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc(registerForRemoteNotificationsWithOptions:notificationDelegate:) dynamic public func registerForRemoteNotifications(options: UserNotifications.UNAuthorizationOptions, notificationDelegate: (any UserComSDK.RemoteNotificationDelegate)? = nil)
-  #endif
   @objc(handleNotificationWithUserInfo:) dynamic public func handleNotification(userInfo: [Swift.AnyHashable : Any])
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
-  #if compiler(>=5.3) && $NonescapableTypes
-  @objc(logoutWithCompletion:) dynamic public func logout(_ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  #endif
+  @objc(logoutWithFcmToken:completion:) dynamic public func logout(fcmToken: Swift.String?, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
@@ -206,15 +175,9 @@ public class Reachability {
   public var connection: UserComSDK.Reachability.Connection {
     get
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   required public init(reachabilityRef: SystemConfiguration.SCNetworkReachability, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init?(hostname: Swift.String, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init?(queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil)
-  #endif
   @objc deinit
 }
 extension UserComSDK.Reachability {

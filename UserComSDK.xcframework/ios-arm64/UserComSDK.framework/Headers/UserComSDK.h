@@ -14,8 +14,8 @@ FOUNDATION_EXPORT double UserSDKVersionNumber;
 //! Project version string for UserSDK.
 FOUNDATION_EXPORT const unsigned char UserSDKVersionString[];
 
-#import "TrackableViewController.h"
-#import "TrackableTableViewController.h"
-#import "TrackableCollectionViewController.h"
-#import "TrackablePageViewController.h"
-#import "TrackableSplitViewController.h"
+#import <UserComSDK/TrackableViewController.h>
+#import <UserComSDK/TrackableTableViewController.h>
+#import <UserComSDK/TrackableCollectionViewController.h>
+#import <UserComSDK/TrackablePageViewController.h>
+#import <UserComSDK/TrackableSplitViewController.h>

@@ -7,5 +7,4 @@ framework module UserComSDK {
 
 module UserComSDK.Swift {
   header "UserComSDK-Swift.h"
-  requires objc
 }
