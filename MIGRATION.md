@@ -1,44 +1,50 @@
-# Migration guide — 0.7.x → 1.0.0
+# Migration guide
 
-Version **1.0.0** removes all external dependencies (Firebase, Gifu). The SDK no longer
-initializes Firebase, does not claim the notification-center delegate, and no longer prompts
-for notification permission on its own. **You** now own Firebase and provide the FCM token.
+## 1.0.0 to 1.1.0
 
-This is a breaking change. Existing apps pinned to `0.7.x` keep working — nothing updates until
-you bump the version explicitly.
+No API changes. Upgrading is a version bump. One behavior change is worth checking.
+
+Completion handlers now report server rejections.
+
+- Before 1.1.0: `sendEvent`, `trackScreen` and similar methods called `completion(true, nil)` even when the server returned an error such as 400 or 401.
+- From 1.1.0: a 4xx response calls `completion(false, error)`. A 5xx or a network error is retried with backoff and kept in the queue.
+
+What to do:
+
+- If you treated `true` as proof of delivery, review that logic.
+- Nothing else changes. Method names and signatures stay the same.
 
 ---
 
-## 1. Dependencies
+## 0.7.x to 1.0.0
 
-### CocoaPods
-Firebase and Gifu are no longer pulled in by the podspec. If your app relies on Firebase for its
-own push, **add it to your own Podfile** (you almost certainly already have it):
+Version 1.0.0 removed all external dependencies (Firebase, Gifu). The SDK no longer initializes Firebase, does not claim the notification-center delegate, and does not prompt for notification permission on its own. You now own Firebase and provide the FCM token.
+
+This is a breaking change. Apps pinned to `0.7.x` keep working until you bump the version.
+
+### 1. Dependencies
+
+CocoaPods. Firebase and Gifu are no longer pulled in by the podspec. If your app uses Firebase for its own push, add it to your own Podfile:
 
 ```ruby
-pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.0.0'
+pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.0'
 # your own:
 pod 'Firebase/Messaging'
 ```
 
-### SPM
-You no longer need to add Firebase or Gifu as dependencies of the SDK. Remove them **only if they
-were added solely for UserSDK** — keep them if your app uses them directly.
+SPM. You no longer need Firebase or Gifu as dependencies of the SDK. Remove them only if they were added solely for UserSDK. Keep them if your app uses them directly.
 
----
+### 2. FCM token, now provided by you
 
-## 2. FCM token — now provided by you
-
-**Before (0.7.x):** the SDK initialized Firebase and fetched the token automatically.
-
-**Now (1.0.0):** pass the token from your Firebase setup.
+- Before (0.7.x): the SDK initialized Firebase and fetched the token.
+- Now: you pass the token from your Firebase setup.
 
 ```swift
 // at init (optional)
 let sdk = UserSDK(application: application, apiKey: "...", baseURL: "...",
                   shouldTrackActivities: false, fcmToken: token)
 
-// or later / on refresh
+// or later, on refresh
 func messaging(_ m: Messaging, didReceiveRegistrationToken token: String?) {
     if let token { UserSDK.default?.setFcmToken(token) }
 }
@@ -47,19 +53,13 @@ func messaging(_ m: Messaging, didReceiveRegistrationToken token: String?) {
 UserSDK.default?.ping(fcmToken: token)
 ```
 
-> Without a token you can still track users and events — you just won't receive push messages.
+Without a token you can still track users and events. You just do not receive push messages.
 
----
+### 3. Push notification handling
 
-## 3. Push notification handling
+If you used `registerForRemoteNotifications(...)`. It still works for apps without their own push stack. It requests permission, registers APNs, and makes the SDK the notification-center delegate.
 
-### If you used `registerForRemoteNotifications(...)`
-Still works for apps **without** their own push stack — it requests permission, registers APNs,
-and makes the SDK the notification-center delegate.
-
-### If you have your own Firebase / push (recommended path)
-**Stop calling `registerForRemoteNotifications(...)`** and keep your own delegate. Forward
-notifications to the SDK instead:
+If you have your own Firebase or push (recommended). Stop calling `registerForRemoteNotifications(...)` and keep your own delegate. Forward notifications to the SDK:
 
 ```swift
 UNUserNotificationCenter.current().delegate = self   // your delegate
@@ -77,40 +77,31 @@ func application(_ a: UIApplication, didReceiveRemoteNotification userInfo: [Any
 }
 ```
 
-The SDK reacts only to User.com payloads (`user_com_notification`); your own pushes are forwarded
-back to your `RemoteNotificationDelegate` untouched. Both work in parallel.
+The SDK reacts only to User.com payloads (`user_com_notification`). Your own pushes are forwarded back to your `RemoteNotificationDelegate`. Both work in parallel.
 
-**Bonus:** because the SDK no longer calls `requestAuthorization` for you, the permission prompt
-appears only when *you* decide.
+Because the SDK no longer calls `requestAuthorization` for you, the permission prompt appears only when you decide.
 
----
+### 4. Logout, token is now explicit
 
-## 4. Logout — token is now explicit
-
-**Before:**
+Before:
 ```swift
 UserSDK.default?.logout { success, error in }
 ```
 
-**Now:**
+Now:
 ```swift
 UserSDK.default?.logout(fcmToken: currentFcmToken) { success, error in }
 ```
 
-Pass the token you want to unbind from the logged-out user (or `nil` to skip the delete).
-The follow-up anonymous ping carries **no** token — call `setFcmToken(_:)` afterwards if the new
-anonymous user should keep receiving pushes.
+Pass the token you want to unbind from the logged-out user, or `nil` to skip the delete. The follow-up anonymous ping carries no token. Call `setFcmToken(_:)` afterwards if the new anonymous user should receive pushes.
 
----
+### 5. API summary
 
-## 5. API summary
-
-| 0.7.x | 1.0.0 |
-|-------|-------|
-| `UserSDK(application:apiKey:baseURL:shouldTrackActivities:)` | same + optional `fcmToken:` |
-| token fetched by SDK (Firebase) | `setFcmToken(_:)` / `ping(fcmToken:)` / `init(fcmToken:)` |
+| 0.7.x | 1.0.0 and later |
+|-------|-----------------|
+| `UserSDK(application:apiKey:baseURL:shouldTrackActivities:)` | same, plus optional `fcmToken:` |
+| token fetched by SDK (Firebase) | `setFcmToken(_:)`, `ping(fcmToken:)`, `init(fcmToken:)` |
 | `logout(_:)` | `logout(fcmToken:_:)` |
-| Firebase + Gifu pulled by SDK | zero dependencies (you own Firebase) |
+| Firebase and Gifu pulled by SDK | zero dependencies, you own Firebase |
 
-Everything else (`ping`, `sendEvent`, `trackScreen`, `setUserData`, `setCustomUserData`,
-product events, in-app messages, `fontResolver`) is unchanged.
+Everything else is unchanged: `ping`, `sendEvent`, `trackScreen`, `setUserData`, `setCustomUserData`, product events, in-app messages, `fontResolver`.

@@ -55,8 +55,9 @@ extension UserComSDK.UserSDK {
   @objc public var baseURL: Swift.String {
     get
   }
+  @available(*, deprecated, message: "Automatic screen tracking is not implemented; this flag has no effect. Call trackScreen(with:) manually or subclass a Trackable*ViewController.")
   @objc public var shouldTrackActivities: Swift.Bool {
-    get
+    @objc get
   }
   @objc public var notificationDelegate: (any UserComSDK.RemoteNotificationDelegate)? {
     @objc get

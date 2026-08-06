@@ -1,22 +1,36 @@
 # Positive User iOS SDK
 
-iOS SDK for [Positive User](https://user.com). Track users, send events, handle
-push notifications and display in-app messages.
+iOS SDK for [Positive User / user.com](https://user.com). It lets your app:
 
-> **Naming:** the pod is `UserSDK`, the module you import is `UserComSDK`, and the main class is `UserSDK`.
+- track users and events
+- send screen views
+- handle push notifications
+- show in-app messages
+
+> Naming: the pod is `UserSDK`, the module you import is `UserComSDK`, the main class is `UserSDK`.
 
 ---
 
-## 1.0.0 Own FCM Token
+## New in 1.1.0
 
-Starting with **1.0.0** SDK has **zero external dependencies**.
+- More reliable event delivery. A failed request retries with a growing backoff and never blocks other events.
+- HTTP errors now reach your completion handlers. Before, some rejected requests looked like a success.
+- In-app button taps are always tracked, including custom scheme deeplinks handled by your click delegate.
 
-- **You own Firebase.** Provide FCM token to the SDK (see below).
-- **No more auto-prompt.** SDK only asks for notification permission if *you* call
-  `registerForRemoteNotifications(...)`. If you manage push yourself, it never prompts.
-- **GIFs** in in-app messages are decoded in-SDK via ImageIO.
+Behavior change to check: `sendEvent`, `trackScreen` and similar methods now call `completion(false, error)` when the server rejects the request (for example 400 or 401). Before 1.1.0 they reported success. If your code treated `true` as proof of delivery, review that logic.
 
-Migrating from 0.7.x? See **[MIGRATION.md](MIGRATION.md)**.
+Migrating from 0.7.x? See [MIGRATION.md](MIGRATION.md).
+
+---
+
+## BYOT (Bring Your Own Token)
+
+The SDK has zero external dependencies. No Firebase, no Gifu.
+
+- You own Firebase. The SDK does not initialize Firebase and does not claim the messaging delegate.
+- You provide the FCM token to the SDK (see below).
+- The SDK asks for notification permission only if you call `registerForRemoteNotifications(...)`.
+- GIFs in in-app messages are decoded in the SDK via ImageIO.
 
 ---
 
@@ -26,15 +40,15 @@ Migrating from 0.7.x? See **[MIGRATION.md](MIGRATION.md)**.
 
 ```
 https://github.com/UserEngage/iOS-SDK.git
-Exact Version: 1.0.0
+Exact Version: 1.1.0
 ```
 
-No extra dependencies required, the package is self-contained.
+The package is self-contained. No extra dependencies required.
 
 ### CocoaPods
 
 ```ruby
-pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.0.0'
+pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.0'
 ```
 
 ```bash
@@ -54,18 +68,20 @@ import UserComSDK
 ```swift
 let sdk = UserSDK(
     application: application,
-    apiKey: "YOUR_SDK_KEY",           // Mobile SDK Key (Settings → App Settings → Advanced → Mobile keys)
+    apiKey: "YOUR_SDK_KEY",           // Mobile SDK Key (Settings, App Settings, Advanced, Mobile keys)
     baseURL: "your-domain.user.com",  // your app domain
-    shouldTrackActivities: false,
-    fcmToken: fcmToken                // optional; can also be set later via setFcmToken(_:)
+    shouldTrackActivities: false,     // deprecated, no effect
+    fcmToken: fcmToken                // optional, can also be set later via setFcmToken(_:)
 )
 
-sdk.ping()                            // creates/updates the contact
+sdk.ping()                            // creates or updates the contact
 ```
+
+`trackScreen` and events need a contact, so call `ping()` successfully before you send them.
 
 ---
 
-## FCM token
+## FCM token (BYOT)
 
 You provide the FCM token. Pass it at init, via `setFcmToken(_:)`, or with a ping:
 
@@ -80,7 +96,7 @@ Call `setFcmToken(_:)` again whenever Firebase rotates the token.
 
 ## Push notifications
 
-### If you don't have your own push stack
+### If you do not have your own push stack
 
 Let the SDK request permission and register for APNs:
 
@@ -91,10 +107,9 @@ UserSDK.default?.registerForRemoteNotifications(
 )
 ```
 
-### If you already use Firebase / manage push yourself
+### If you already use Firebase or manage push yourself
 
-**Do not** call `registerForRemoteNotifications(...)` — keep the notification-center delegate.
-Just forward incoming notifications to the SDK and provide the token:
+Do not call `registerForRemoteNotifications(...)`. Keep your own notification-center delegate. Forward incoming notifications to the SDK and provide the token:
 
 ```swift
 // own your delegate
@@ -105,7 +120,7 @@ func messaging(_ m: Messaging, didReceiveRegistrationToken token: String?) {
     if let token { UserSDK.default?.setFcmToken(token) }
 }
 
-// forward taps / foreground / silent pushes
+// forward taps, foreground, and silent pushes
 func userNotificationCenter(_ c: UNUserNotificationCenter, didReceive r: UNNotificationResponse,
                             withCompletionHandler done: @escaping () -> Void) {
     UserSDK.default?.handleNotification(userInfo: r.notification.request.content.userInfo)
@@ -119,12 +134,30 @@ func application(_ a: UIApplication, didReceiveRemoteNotification userInfo: [Any
 }
 ```
 
-The SDK only acts on notifications it recognizes (User.com payloads); everything else is passed
-back untouched to your `RemoteNotificationDelegate`. Your own pushes keep working in parallel.
+The SDK acts only on User.com notifications. Everything else is passed back to your `RemoteNotificationDelegate`. Your own pushes keep working.
 
 ---
 
-## Events & user data
+## In-app message clicks
+
+Handle in-app button taps yourself, for example to open a deeplink:
+
+```swift
+UserSDK.default?.inAppNotificationClickDelegate = self
+
+func inAppNotificationDidClick(url: URL) -> Bool {
+    // return true if you handled the URL (deeplinks, custom schemes)
+    // return false to let the SDK open it in the browser
+    router.open(url)
+    return true
+}
+```
+
+The delegate receives every URL, including custom scheme deeplinks. The SDK opens the URL itself only if you return `false`.
+
+---
+
+## Events and user data
 
 ```swift
 UserSDK.default?.sendEvent(with: "purchase", params: ["amount": 99])
@@ -135,17 +168,17 @@ UserSDK.default?.setCustomUserData(["plan": "pro"])
 
 ## Logout
 
-You explicitly pass the FCM token to unbind from the logged-out user:
+Pass the FCM token to unbind it from the logged-out user:
 
 ```swift
 UserSDK.default?.logout(fcmToken: currentFcmToken) { success, error in }
 ```
 
-After logout, call `setFcmToken(_:)` again if the new (anonymous) user should receive pushes.
+After logout, call `setFcmToken(_:)` again if the new anonymous user should receive pushes.
 
 ---
 
-## In-app messages — custom fonts
+## In-app messages, custom fonts
 
 ```swift
 UserSDK.default?.fontResolver = FontResolver()   // a type conforming to FontResolving
@@ -160,18 +193,6 @@ public protocol FontResolving {
 Set `fontResolver` after initializing the SDK.
 
 ---
-
-## Changelog
-
-### 1.0.0
-- **BYOT** — removed Firebase and Gifu dependencies. The SDK is now dependency-free.
-- Host app provides the FCM token via `init(fcmToken:)`, `setFcmToken(_:)` or `ping(fcmToken:)`.
-- `logout(fcmToken:)` now takes the token explicitly.
-- In-app GIFs decoded via ImageIO (Gifu removed).
-- No automatic notification-permission prompt unless `registerForRemoteNotifications` is called.
-
-### 0.7.x
-- In-app message improvements, SPM support, logout/reinstall fixes.
 
 ## License
 

@@ -963,14 +963,13 @@
             "usr": "c:@M@UserComSDK@objc(cs)UserSDK(py)shouldTrackActivities",
             "mangledName": "$s10UserComSDK0aC0C21shouldTrackActivitiesSbvp",
             "moduleName": "UserComSDK",
+            "deprecated": true,
             "declAttributes": [
-              "HasStorage",
-              "SetterAccess",
               "AccessControl",
               "ObjC",
+              "Available",
               "RawDocComment"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -988,7 +987,6 @@
                 "usr": "c:@M@UserComSDK@objc(cs)UserSDK(im)shouldTrackActivities",
                 "mangledName": "$s10UserComSDK0aC0C21shouldTrackActivitiesSbvg",
                 "moduleName": "UserComSDK",
-                "implicit": true,
                 "declAttributes": [
                   "ObjC"
                 ],
@@ -5317,6 +5315,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "UserComSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "String",
         "printedName": "String",
@@ -6348,22 +6356,29 @@
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/APIMethod.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1733,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/APIMethod.swift",
       "kind": "Dictionary",
-      "offset": 741,
+      "offset": 2476,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/APIMethod.swift",
       "kind": "Dictionary",
-      "offset": 786,
+      "offset": 2521,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/APIMethod.swift",
       "kind": "Dictionary",
-      "offset": 828,
+      "offset": 2563,
       "length": 3,
       "value": "[]"
     },
@@ -6615,147 +6630,147 @@
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 1603,
+      "offset": 1610,
       "length": 7,
       "value": "\"Close\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7815,
+      "offset": 8315,
       "length": 8,
       "value": "1"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7837,
+      "offset": 8337,
       "length": 6,
       "value": "2"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7857,
+      "offset": 8357,
       "length": 16,
       "value": "3"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7887,
+      "offset": 8387,
       "length": 5,
       "value": "4"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7906,
+      "offset": 8406,
       "length": 11,
       "value": "5"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7931,
+      "offset": 8431,
       "length": 8,
       "value": "6"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7953,
+      "offset": 8453,
       "length": 4,
       "value": "7"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7971,
+      "offset": 8471,
       "length": 5,
       "value": "8"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 7990,
+      "offset": 8490,
       "length": 6,
       "value": "9"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8010,
+      "offset": 8510,
       "length": 3,
       "value": "10"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8027,
+      "offset": 8527,
       "length": 6,
       "value": "11"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8047,
+      "offset": 8547,
       "length": 8,
       "value": "12"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8069,
+      "offset": 8569,
       "length": 14,
       "value": "13"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8097,
+      "offset": 8597,
       "length": 6,
       "value": "14"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8117,
+      "offset": 8617,
       "length": 10,
       "value": "15"
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10138,
+      "offset": 10638,
       "length": 12,
       "value": "\"first_name\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10175,
+      "offset": 10675,
       "length": 11,
       "value": "\"last_name\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10208,
+      "offset": 10708,
       "length": 7,
       "value": "\"email\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10237,
+      "offset": 10737,
       "length": 7,
       "value": "\"phone\""
     },
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10267,
+      "offset": 10767,
       "length": 9,
       "value": "\"user_id\""
     },
@@ -6944,7 +6959,7 @@
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/InAppViewController.swift",
       "kind": "FloatLiteral",
-      "offset": 16410,
+      "offset": 17003,
       "length": 3,
       "value": "0.0"
     },
@@ -6958,9 +6973,30 @@
     {
       "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/EventQueue.swift",
       "kind": "Array",
-      "offset": 401,
+      "offset": 397,
       "length": 2,
       "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/EventQueue.swift",
+      "kind": "StringLiteral",
+      "offset": 716,
+      "length": 28,
+      "value": "\"com.usercom.sdk.eventqueue\""
+    },
+    {
+      "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/EventQueue.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1107,
+      "length": 1,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/praca\/iOS-SDK-Source\/Sources\/UserComSDK\/EventQueue.swift",
+      "kind": "Array",
+      "offset": 1158,
+      "length": 13,
+      "value": "[30, 60, 120]"
     }
   ]
 }
