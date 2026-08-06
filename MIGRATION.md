@@ -27,7 +27,7 @@ This is a breaking change. Apps pinned to `0.7.x` keep working until you bump th
 CocoaPods. Firebase and Gifu are no longer pulled in by the podspec. If your app uses Firebase for its own push, add it to your own Podfile:
 
 ```ruby
-pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.0'
+pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.1'
 # your own:
 pod 'Firebase/Messaging'
 ```

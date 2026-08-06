@@ -11,6 +11,10 @@ iOS SDK for [Positive User / user.com](https://user.com). It lets your app:
 
 ---
 
+## New in 1.1.1
+
+- Fixed in-app click tracking. The click callback now sends the URL where the backend expects it, so in-app clicks are counted again.
+
 ## New in 1.1.0
 
 - More reliable event delivery. A failed request retries with a growing backoff and never blocks other events.
@@ -40,7 +44,7 @@ The SDK has zero external dependencies. No Firebase, no Gifu.
 
 ```
 https://github.com/UserEngage/iOS-SDK.git
-Exact Version: 1.1.0
+Exact Version: 1.1.1
 ```
 
 The package is self-contained. No extra dependencies required.
@@ -48,7 +52,7 @@ The package is self-contained. No extra dependencies required.
 ### CocoaPods
 
 ```ruby
-pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.0'
+pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.1'
 ```
 
 ```bash
