@@ -14,10 +14,13 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
+        // Diagnostic build for the in-app window-selection fix. This branch serves the
+        // framework straight from the repository, so there is no release, no tag and no
+        // checksum to keep in sync. Do not merge: `master` must keep the url + checksum
+        // form pointing at a published release.
         .binaryTarget(
             name: "UserComSDK",
-            url: "https://github.com/UserEngage/iOS-SDK/releases/download/1.1.1/UserComSDK.xcframework.zip",
-            checksum: "0695c9895d650db577a84a69f84590df6324ff9ef8c280707a120f1ac5954e63"
+            path: "UserComSDK.xcframework"
         )
     ]
 )
