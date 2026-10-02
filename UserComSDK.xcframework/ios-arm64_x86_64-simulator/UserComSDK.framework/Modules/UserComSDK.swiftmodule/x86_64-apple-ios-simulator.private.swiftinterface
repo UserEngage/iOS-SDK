@@ -121,8 +121,8 @@ extension UserComSDK.UserSDK {
       get
     }
   }
-  public func setUserData(_ userData: [UserComSDK.UserSDK.UserDataKey : Swift.String?], _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  public func setCustomUserData(_ customUserData: [Swift.String : Any?], _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  public func setUserData(_ userData: [UserComSDK.UserSDK.UserDataKey : Swift.String?], fcmToken: Swift.String? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  public func setCustomUserData(_ customUserData: [Swift.String : Any?], fcmToken: Swift.String? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {

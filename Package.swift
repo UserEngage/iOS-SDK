@@ -14,10 +14,11 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        // Diagnostic build for the in-app window-selection fix. This branch serves the
-        // framework straight from the repository, so there is no release, no tag and no
-        // checksum to keep in sync. Do not merge: `master` must keep the url + checksum
-        // form pointing at a published release.
+        // Pre-release test build of 1.1.2 (in-app in its own window, in-app received in
+        // the background shown on next activation). This branch serves the framework
+        // straight from the repository, so there is no release, no tag and no checksum to
+        // keep in sync. Do not merge: `master` must keep the url + checksum form pointing
+        // at a published release.
         .binaryTarget(
             name: "UserComSDK",
             path: "UserComSDK.xcframework"

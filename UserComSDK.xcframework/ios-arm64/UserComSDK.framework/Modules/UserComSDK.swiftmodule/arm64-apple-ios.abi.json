@@ -3059,7 +3059,7 @@
           {
             "kind": "Function",
             "name": "setUserData",
-            "printedName": "setUserData(_:_:)",
+            "printedName": "setUserData(_:fcmToken:_:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -3097,99 +3097,17 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "((Swift.Bool, (any Swift.Error)?) -> ())?",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.Bool, (any Swift.Error)?) -> ()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Tuple",
-                        "printedName": "(Swift.Bool, (any Swift.Error)?)",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Bool",
-                            "printedName": "Swift.Bool",
-                            "usr": "s:Sb"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Optional",
-                            "printedName": "(any Swift.Error)?",
-                            "children": [
-                              {
-                                "kind": "TypeNominal",
-                                "name": "Error",
-                                "printedName": "any Swift.Error",
-                                "usr": "s:s5ErrorP"
-                              }
-                            ],
-                            "usr": "s:Sq"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:10UserComSDK0aC0C03setA4DatayySDyAC0aE3KeyOSSSgG_ySb_s5Error_pSgtcSgtF",
-            "mangledName": "$s10UserComSDK0aC0C03setA4DatayySDyAC0aE3KeyOSSSgG_ySb_s5Error_pSgtcSgtF",
-            "moduleName": "UserComSDK",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "setCustomUserData",
-            "printedName": "setCustomUserData(_:_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Dictionary",
-                "printedName": "[Swift.String : Any?]",
+                "printedName": "Swift.String?",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "String",
                     "printedName": "Swift.String",
                     "usr": "s:SS"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Any?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "ProtocolComposition",
-                        "printedName": "Any"
-                      }
-                    ],
-                    "usr": "s:Sq"
                   }
                 ],
-                "usr": "s:SD"
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -3241,8 +3159,120 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10UserComSDK0aC0C09setCustomA4DatayySDySSypSgG_ySb_s5Error_pSgtcSgtF",
-            "mangledName": "$s10UserComSDK0aC0C09setCustomA4DatayySDySSypSgG_ySb_s5Error_pSgtcSgtF",
+            "usr": "s:10UserComSDK0aC0C03setA4Data_8fcmToken_ySDyAC0aE3KeyOSSSgG_AHySb_s5Error_pSgtcSgtF",
+            "mangledName": "$s10UserComSDK0aC0C03setA4Data_8fcmToken_ySDyAC0aE3KeyOSSSgG_AHySb_s5Error_pSgtcSgtF",
+            "moduleName": "UserComSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setCustomUserData",
+            "printedName": "setCustomUserData(_:fcmToken:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any?]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Any?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "usr": "s:SD"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.Bool, (any Swift.Error)?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Bool, (any Swift.Error)?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.Bool, (any Swift.Error)?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "(any Swift.Error)?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "any Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10UserComSDK0aC0C09setCustomA4Data_8fcmToken_ySDySSypSgG_SSSgySb_s5Error_pSgtcSgtF",
+            "mangledName": "$s10UserComSDK0aC0C09setCustomA4Data_8fcmToken_ySDySSypSgG_SSSgySb_s5Error_pSgtcSgtF",
             "moduleName": "UserComSDK",
             "declAttributes": [
               "AccessControl",
@@ -5325,6 +5355,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "UserComSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "String",
         "printedName": "String",
@@ -6630,147 +6670,147 @@
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 1610,
+      "offset": 1669,
       "length": 7,
       "value": "\"Close\""
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8315,
+      "offset": 9454,
       "length": 8,
       "value": "1"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8337,
+      "offset": 9476,
       "length": 6,
       "value": "2"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8357,
+      "offset": 9496,
       "length": 16,
       "value": "3"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8387,
+      "offset": 9526,
       "length": 5,
       "value": "4"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8406,
+      "offset": 9545,
       "length": 11,
       "value": "5"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8431,
+      "offset": 9570,
       "length": 8,
       "value": "6"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8453,
+      "offset": 9592,
       "length": 4,
       "value": "7"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8471,
+      "offset": 9610,
       "length": 5,
       "value": "8"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8490,
+      "offset": 9629,
       "length": 6,
       "value": "9"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8510,
+      "offset": 9649,
       "length": 3,
       "value": "10"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8527,
+      "offset": 9666,
       "length": 6,
       "value": "11"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8547,
+      "offset": 9686,
       "length": 8,
       "value": "12"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8569,
+      "offset": 9708,
       "length": 14,
       "value": "13"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8597,
+      "offset": 9736,
       "length": 6,
       "value": "14"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 8617,
+      "offset": 9756,
       "length": 10,
       "value": "15"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10638,
+      "offset": 11777,
       "length": 12,
       "value": "\"first_name\""
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10675,
+      "offset": 11814,
       "length": 11,
       "value": "\"last_name\""
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10708,
+      "offset": 11847,
       "length": 7,
       "value": "\"email\""
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10737,
+      "offset": 11876,
       "length": 7,
       "value": "\"phone\""
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/UserSDK.swift",
       "kind": "StringLiteral",
-      "offset": 10767,
+      "offset": 11906,
       "length": 9,
       "value": "\"user_id\""
     },
@@ -6868,28 +6908,28 @@
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/NotificationManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6571,
+      "offset": 8698,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/NotificationManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6593,
+      "offset": 8720,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/NotificationManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6615,
+      "offset": 8742,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/NotificationManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6638,
+      "offset": 8765,
       "length": 1,
       "value": "4"
     },
@@ -6959,7 +6999,7 @@
     {
       "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/InAppViewController.swift",
       "kind": "FloatLiteral",
-      "offset": 17003,
+      "offset": 17363,
       "length": 3,
       "value": "0.0"
     },
@@ -6997,6 +7037,34 @@
       "offset": 1158,
       "length": 13,
       "value": "[30, 60, 120]"
+    },
+    {
+      "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/PendingInAppStore.swift",
+      "kind": "IntegerLiteral",
+      "offset": 976,
+      "length": 1,
+      "value": "6"
+    },
+    {
+      "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/PendingInAppStore.swift",
+      "kind": "IntegerLiteral",
+      "offset": 980,
+      "length": 2,
+      "value": "60"
+    },
+    {
+      "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/PendingInAppStore.swift",
+      "kind": "IntegerLiteral",
+      "offset": 985,
+      "length": 2,
+      "value": "60"
+    },
+    {
+      "filePath": "\/Users\/praca\/SDK-DEV\/iOS\/iOS-SDK-Source\/Sources\/UserComSDK\/PendingInAppStore.swift",
+      "kind": "StringLiteral",
+      "offset": 1018,
+      "length": 29,
+      "value": "\"UserSDK.pendingInAppMessage\""
     }
   ]
 }
