@@ -11,6 +11,17 @@ iOS SDK for [Positive User / user.com](https://user.com). It lets your app:
 
 ---
 
+## New in 1.2.0
+
+- In-app messages are shown in their own window, so your navigation (splash screens, `.fullScreen` presentations, a replaced `rootViewController`) no longer blocks them, and you can present your own screens while one is visible.
+- An in-app message received while the app is in the background is shown the next time the app becomes active, if it arrived less than 6 hours earlier. Only the newest one is kept.
+- `displayed` is reported only once the message is actually on screen.
+- Notification handling moves to the main thread by itself, so calling `handleNotification` from a `Task`, an actor or a background queue is safe.
+- `setUserData` and `setCustomUserData` accept an optional `fcmToken`.
+- The device iOS version and the SDK version are now stored correctly on the contact.
+
+Behavior changes to check: product event `params` are sent as separate product attributes (before 1.2.0 they were nested under `custom_data` and stored as a single JSON attribute), and `logout` now records a `logout` event for the user who is leaving. See [MIGRATION.md](MIGRATION.md).
+
 ## New in 1.1.1
 
 - Fixed in-app click tracking. The click callback now sends the URL where the backend expects it, so in-app clicks are counted again.
@@ -44,7 +55,7 @@ The SDK has zero external dependencies. No Firebase, no Gifu.
 
 ```
 https://github.com/UserEngage/iOS-SDK.git
-Exact Version: 1.1.1
+Exact Version: 1.2.0
 ```
 
 The package is self-contained. No extra dependencies required.
@@ -52,7 +63,7 @@ The package is self-contained. No extra dependencies required.
 ### CocoaPods
 
 ```ruby
-pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.1'
+pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.2.0'
 ```
 
 ```bash

@@ -453,6 +453,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull inAp
 SWIFT_AVAILABILITY(ios_app_extension,unavailable)
 @interface UserSDK (SWIFT_EXTENSION(UserComSDK))
 /// Logout user from app/SDK and wipe all the data.
+/// A <code>logout</code> event is recorded on the user who is leaving before the data is wiped.
 /// The host app explicitly passes the FCM token to unbind (BYOT) — the SDK does not
 /// reach for any stored token on its own. The anonymous ping that follows carries no
 /// token; call <code>setFcmToken(_:)</code> afterwards if the anonymous user should receive pushes.

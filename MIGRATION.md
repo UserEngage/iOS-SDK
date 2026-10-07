@@ -1,5 +1,22 @@
 # Migration guide
 
+## 1.1.x to 1.2.0
+
+No breaking API changes. `setUserData` and `setCustomUserData` gained an optional `fcmToken` parameter with a default value, so existing calls compile unchanged. Two behavior changes are worth checking.
+
+Product event params are separate attributes.
+
+- Before 1.2.0: `sendProductEvent` nested `params` under `custom_data`, which the backend stored as one JSON attribute.
+- From 1.2.0: each param is sent next to `custom_id` and becomes its own product attribute, the same as in the Android SDK.
+- What to do: if you built segments or automations on the `custom_data` attribute, rebuild them on the individual attributes. Use a fixed set of param keys with stable value types, because every new key creates a new product attribute.
+
+`logout` records a `logout` event.
+
+- From 1.2.0: before wiping the user data, the SDK sends a `logout` event for the user who is leaving.
+- What to do: if you already send your own logout event, you may want to remove it to avoid counting logouts twice.
+
+---
+
 ## 1.0.0 to 1.1.0
 
 No API changes. Upgrading is a version bump. One behavior change is worth checking.
@@ -27,7 +44,7 @@ This is a breaking change. Apps pinned to `0.7.x` keep working until you bump th
 CocoaPods. Firebase and Gifu are no longer pulled in by the podspec. If your app uses Firebase for its own push, add it to your own Podfile:
 
 ```ruby
-pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.1.1'
+pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.2.0'
 # your own:
 pod 'Firebase/Messaging'
 ```
