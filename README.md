@@ -135,7 +135,8 @@ func messaging(_ m: Messaging, didReceiveRegistrationToken token: String?) {
     if let token { UserSDK.default?.setFcmToken(token) }
 }
 
-// forward taps, foreground, and silent pushes
+// forward taps and silent pushes (in-app messages).
+// Do not forward willPresent: every handleNotification call counts as a click.
 func userNotificationCenter(_ c: UNUserNotificationCenter, didReceive r: UNNotificationResponse,
                             withCompletionHandler done: @escaping () -> Void) {
     UserSDK.default?.handleNotification(userInfo: r.notification.request.content.userInfo)
