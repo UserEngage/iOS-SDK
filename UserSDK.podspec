@@ -1,7 +1,7 @@
 # local testing podspec
 
 Pod::Spec.new do |spec|
-    version                     = '1.2.0'
+    version                     = '1.3.0'
     swift_version               = '5.10'
 
     spec.name                   = "UserSDK"
@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
     spec.source                 = { :git => "git@github.com:UserEngage/iOS-SDK.git", :tag => "#{version}" }
     spec.vendored_frameworks    = 'UserComSDK.xcframework'
     spec.static_framework       = true
-    spec.frameworks             = 'Foundation', 'UIKit', 'CoreTelephony', 'AdSupport', 'SystemConfiguration', 'UserNotifications'
+    spec.frameworks             = 'Foundation', 'UIKit', 'SystemConfiguration', 'UserNotifications'
 
     # 1.0.0 — BYOT: zero external dependencies (no Firebase, no Gifu).
     # Host app owns Firebase and provides the FCM token via UserSDK.setFcmToken(_:).

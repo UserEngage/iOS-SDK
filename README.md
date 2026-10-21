@@ -11,6 +11,20 @@ iOS SDK for [Positive User / user.com](https://user.com). It lets your app:
 
 ---
 
+## New in 1.3.0
+
+- Links from User.com emails: `handleEmailLink` counts the click and gives your app the target of the link.
+- One method per contact update: `updateContact` with a `Contact`. The SDK no longer keeps a copy of contact data.
+- Received notifications and taps are passed separately: `handleNotification(_:)` never counts a click, `handleNotificationClick(_:)` does.
+- Every failure is a `UserSDKError`, and `UserSDK.errorHandler` receives all of them in one place, for example to log them to Crashlytics.
+- After logout the anonymous contact keeps the push token, so the device still receives pushes.
+- Data that cannot be sent (a `Date` in attributes, an empty event name) returns an error instead of crashing the app.
+- Completions always run on the main thread.
+- An app woken in the background on a locked phone no longer creates a duplicate contact.
+- New names: `sendEvent(name:attributes:)`, `trackScreen(name:)`, `sendProductEvent(_:eventType:attributes:)`, `userKey`, `inAppMessageClickHandler`. The old names still work and are deprecated until 2.0.
+
+Behavior changes to check: see [MIGRATION.md](MIGRATION.md).
+
 ## New in 1.2.0
 
 - In-app messages are shown in their own window, so your navigation (splash screens, `.fullScreen` presentations, a replaced `rootViewController`) no longer blocks them, and you can present your own screens while one is visible.
@@ -55,7 +69,7 @@ The SDK has zero external dependencies. No Firebase, no Gifu.
 
 ```
 https://github.com/UserEngage/iOS-SDK.git
-Exact Version: 1.2.0
+Exact Version: 1.3.0
 ```
 
 The package is self-contained. No extra dependencies required.
@@ -63,7 +77,7 @@ The package is self-contained. No extra dependencies required.
 ### CocoaPods
 
 ```ruby
-pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.2.0'
+pod 'UserSDK', :git => 'https://github.com/UserEngage/iOS-SDK.git', :tag => '1.3.0'
 ```
 
 ```bash
@@ -92,7 +106,7 @@ let sdk = UserSDK(
 sdk.ping()                            // creates or updates the contact
 ```
 
-`trackScreen` and events need a contact, so call `ping()` successfully before you send them.
+Events and screens need a contact, so call `ping()` successfully before you send them. Before that they end with `UserSDKError.notIdentified`.
 
 ---
 
@@ -135,22 +149,26 @@ func messaging(_ m: Messaging, didReceiveRegistrationToken token: String?) {
     if let token { UserSDK.default?.setFcmToken(token) }
 }
 
-// forward taps and silent pushes (in-app messages).
-// Do not forward willPresent: every handleNotification call counts as a click.
+// a tap on a notification: the SDK counts the click
 func userNotificationCenter(_ c: UNUserNotificationCenter, didReceive r: UNNotificationResponse,
                             withCompletionHandler done: @escaping () -> Void) {
-    UserSDK.default?.handleNotification(userInfo: r.notification.request.content.userInfo)
+    UserSDK.default?.handleNotificationClick(r.notification.request.content.userInfo)
     done()
 }
 
+// a received notification (silent pushes carry in-app messages): never a click
 func application(_ a: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                  fetchCompletionHandler done: @escaping (UIBackgroundFetchResult) -> Void) {
-    UserSDK.default?.handleNotification(userInfo: userInfo)
+    UserSDK.default?.handleNotification(userInfo)
     done(.noData)
 }
 ```
 
-The SDK acts only on User.com notifications. Everything else is passed back to your `RemoteNotificationDelegate`. Your own pushes keep working.
+`handleNotification(_:)` returns `true` for a User.com notification and `false` for any other, so you can handle your own pushes as usual. You can also pass notifications from `willPresent` to it: receiving a notification is never counted as a click. `isUserComNotification(_:)` checks a payload without side effects.
+
+`handleNotificationClick(_:)` reports the click and passes the payload to your `RemoteNotificationDelegate` (link, screen name). A push without a link has `link` set to `"None"`: treat it like no link.
+
+If the SDK is your notification-center delegate (you called `registerForRemoteNotifications(...)`), it handles taps itself and shows notifications received in the foreground.
 
 ---
 
@@ -159,9 +177,7 @@ The SDK acts only on User.com notifications. Everything else is passed back to y
 Handle in-app button taps yourself, for example to open a deeplink:
 
 ```swift
-UserSDK.default?.inAppNotificationClickDelegate = self
-
-func inAppNotificationDidClick(url: URL) -> Bool {
+UserSDK.default?.inAppMessageClickHandler = { url in
     // return true if you handled the URL (deeplinks, custom schemes)
     // return false to let the SDK open it in the browser
     router.open(url)
@@ -169,18 +185,81 @@ func inAppNotificationDidClick(url: URL) -> Bool {
 }
 ```
 
-The delegate receives every URL, including custom scheme deeplinks. The SDK opens the URL itself only if you return `false`.
+The handler receives every URL, including custom scheme deeplinks, on the main thread. The SDK opens the URL itself only if you return `false`. The click is reported either way.
 
 ---
 
-## Events and user data
+## Events
 
 ```swift
-UserSDK.default?.sendEvent(with: "purchase", params: ["amount": 99])
-UserSDK.default?.trackScreen(with: "Home")
-UserSDK.default?.setUserData([.email: "jane@example.com", .firstName: "Jane"])
-UserSDK.default?.setCustomUserData(["plan": "pro"])
+UserSDK.default?.sendEvent(name: "purchase", attributes: ["amount": 99])
+UserSDK.default?.trackScreen(name: "Home")
+UserSDK.default?.sendProductEvent("SKU-1", eventType: .addToCart, attributes: ["name": "Mug", "price": 29])
 ```
+
+- Keep one spelling and case per event name: `Purchase` and `purchase` collide.
+- Attribute values must be JSON values: `String`, numbers, `Bool`, arrays, dictionaries. Each new key creates an attribute in the panel, its type set by the first value.
+- An event name must not be empty, longer than 255 characters or contain HTML. A screen name is at most 128 characters.
+
+## Contact data
+
+```swift
+let contact = Contact(userId: "42", email: "jane@example.com", firstName: "Jane",
+                      attributes: ["plan": "pro"])
+UserSDK.default?.updateContact(contact, fcmToken: fcmToken) { success, error in }
+```
+
+- What you pass is added to the contact. A field you leave `nil` keeps its value.
+- The SDK keeps no copy: later pings do not repeat it.
+- A `userId` different from the current contact's switches to the contact with that id. Call `updateContact` at login, with the push token, so both reach the backend in one request.
+- Custom attributes must exist in the panel. `attributes` also takes standard ones such as `gender` or `score`.
+- `UserSDK.default?.userKey` is the key of the contact the SDK sends data for.
+
+## Links from emails
+
+Links in User.com emails point to a tracking address on your User.com domain. When such a link opens your app (Universal Link), pass the URL to the SDK. It counts the click and gives you the target the email links to:
+
+```swift
+.onOpenURL { url in
+    Task {
+        if let target = await UserSDK.default?.handleEmailLink(url) {
+            router.open(target)          // a screen of your app, or the browser with the target
+        } else {
+            router.open(url)             // not a link from a User.com email
+        }
+    }
+}
+```
+
+The same works with a completion: `handleEmailLink(url) { target in }`.
+
+- Pass every incoming URL. For other links the SDK returns `nil` without a request.
+- Never open the tracking link itself in the browser: that counts a second click.
+- Without a connection the target still comes from the link, only the click is lost.
+- The target is returned unchanged. Ignore query parameters you do not use when you route it.
+
+## Errors
+
+Every failure reaches your completion as a `UserSDKError`. `UserSDK.errorHandler` receives all of them on the main thread, also from calls without a completion:
+
+```swift
+UserSDK.errorHandler = { error in
+    Crashlytics.crashlytics().record(error: error)
+}
+```
+
+| Error | Meaning |
+|---|---|
+| `notIdentified` | no contact yet, call `ping()` first |
+| `invalidName` | event name, screen name or product id not accepted |
+| `invalidData` | an attribute value JSON cannot hold, or an empty key |
+| `rejected(statusCode:)` | the server refused the request |
+| `network` | no connection after all retries |
+| `notCollectingData` | the app does not collect data (check the panel) |
+| `invalidConfiguration` | wrong base URL |
+| `loggedOut` | dropped because the user logged out first |
+
+A request waiting offline is not an error: its result comes when it is sent or finally dropped. Completions always run on the main thread.
 
 ## Logout
 
@@ -190,7 +269,7 @@ Pass the FCM token to unbind it from the logged-out user:
 UserSDK.default?.logout(fcmToken: currentFcmToken) { success, error in }
 ```
 
-After logout, call `setFcmToken(_:)` again if the new anonymous user should receive pushes.
+The anonymous contact created after logout gets the same push token, so the device keeps receiving pushes. Turning pushes off after logout is up to your app.
 
 ---
 

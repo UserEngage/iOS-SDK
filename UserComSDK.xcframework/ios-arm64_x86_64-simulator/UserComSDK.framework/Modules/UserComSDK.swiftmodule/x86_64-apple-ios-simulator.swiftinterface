@@ -2,9 +2,6 @@
 // swift-compiler-version: Apple Swift version 6.3.1 effective-5.10 (swiftlang-6.3.1.1.2 clang-2100.0.123.102)
 // swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name UserComSDK
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.1
-import AdSupport
-import SystemConfiguration.CaptiveNetwork
-import CoreTelephony
 import Foundation
 import ImageIO
 import Swift
@@ -24,10 +21,13 @@ extension UserComSDK.UserSDK {
   @available(swift, obsoleted: 0.1)
   @objc dynamic public func trackScreen(name: Swift.String)
   @available(swift, obsoleted: 0.1)
+  @available(*, deprecated, message: "Use updateContact:fcmToken:completion:.")
   @objc dynamic public func setUserData(_ userData: [Swift.String : Swift.String], completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
   @available(swift, obsoleted: 0.1)
+  @available(*, deprecated, message: "Use updateContact:fcmToken:completion:.")
   @objc dynamic public func setCustomUserData(_ customUserData: [Swift.String : Any], completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
   @available(swift, obsoleted: 0.1)
+  @available(*, deprecated, message: "Use updateContact:fcmToken:completion:.")
   @objc dynamic public func setCustomUserData(_ customUserData: [Swift.String : Any])
   @available(swift, obsoleted: 0.1)
   @objc dynamic public func logout()
@@ -49,13 +49,14 @@ extension UserComSDK.UserSDK {
     @objc set
   }
   @objc public static var inAppAlertCloseButtonText: Swift.String
+  public static var errorHandler: ((UserComSDK.UserSDKError) -> Swift.Void)?
   @objc public var apiKey: Swift.String {
     get
   }
   @objc public var baseURL: Swift.String {
     get
   }
-  @available(*, deprecated, message: "Automatic screen tracking is not implemented; this flag has no effect. Call trackScreen(with:) manually or subclass a Trackable*ViewController.")
+  @available(*, deprecated, message: "Automatic screen tracking is not implemented; this flag has no effect. Call trackScreen(name:) manually or subclass a Trackable*ViewController.")
   @objc public var shouldTrackActivities: Swift.Bool {
     @objc get
   }
@@ -63,11 +64,20 @@ extension UserComSDK.UserSDK {
     @objc get
     @objc set
   }
+  @objc public var userKey: Swift.String? {
+    @objc get
+  }
+  @available(*, deprecated, renamed: "userKey")
   @objc public var userId: Swift.String? {
     @objc get
   }
   @objc public var fontResolver: (any UserComSDK.FontResolving)?
-  public var inAppNotificationClickDelegate: (any UserComSDK.InAppNotificationClickDelegate)?
+  public var inAppMessageClickHandler: ((Foundation.URL) -> Swift.Bool)?
+  @available(*, deprecated, renamed: "inAppMessageClickHandler", message: "Set inAppMessageClickHandler, a closure with the same meaning.")
+  public var inAppNotificationClickDelegate: (any UserComSDK.InAppNotificationClickDelegate)? {
+    get
+    set
+  }
   @objc public init(application: UIKit.UIApplication, apiKey: Swift.String, baseURL: Swift.String, shouldTrackActivities: Swift.Bool, fcmToken: Swift.String? = nil)
   @objc deinit
 }
@@ -75,12 +85,16 @@ extension UserComSDK.UserSDK {
 extension UserComSDK.UserSDK {
   @objc(pingWithFcmToken:completion:) dynamic public func ping(fcmToken: Swift.String? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
   @objc(setFcmToken:) dynamic public func setFcmToken(_ token: Swift.String)
+  @objc(sendEventWithName:attributes:completion:) dynamic public func sendEvent(name: Swift.String, attributes: [Swift.String : Any]? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  @available(*, deprecated, renamed: "sendEvent(name:attributes:_:)")
   @objc(sendEventWithName:params:completion:) dynamic public func sendEvent(with name: Swift.String, params: [Swift.String : Any], _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
-  @objc(trackScreenWithName:completion:) dynamic public func trackScreen(with name: Swift.String, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  @objc(trackScreenWithName:completion:) dynamic public func trackScreen(name: Swift.String, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  @available(*, deprecated, renamed: "trackScreen(name:_:)")
+  public func trackScreen(with name: Swift.String, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
-  @objc public enum EventType : Swift.Int {
+  @objc(EventType) public enum ProductEventType : Swift.Int {
     case addToCart
     case purchase
     case liking
@@ -104,10 +118,19 @@ extension UserComSDK.UserSDK {
       get
     }
   }
-  @objc(sendProductEventWithProductId:eventType:name:productURL:params:completion:) dynamic public func sendProductEvent(_ productId: Swift.String, eventType: UserComSDK.UserSDK.EventType, name: Swift.String? = nil, productURL: Swift.String? = nil, params: [Swift.String : Any]? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  @available(*, deprecated, renamed: "ProductEventType")
+  public typealias EventType = UserComSDK.UserSDK.ProductEventType
+  @objc(sendProductEventWithProductId:eventType:attributes:completion:) dynamic public func sendProductEvent(_ productId: Swift.String, eventType: UserComSDK.UserSDK.ProductEventType, attributes: [Swift.String : Any]? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  @available(*, deprecated, message: "Use sendProductEvent(_:eventType:attributes:_:) and pass name and product_url in attributes.")
+  @objc(sendProductEventWithProductId:eventType:name:productURL:params:completion:) dynamic public func sendProductEvent(_ productId: Swift.String, eventType: UserComSDK.UserSDK.ProductEventType, name: Swift.String? = nil, productURL: Swift.String? = nil, params: [Swift.String : Any]? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
+  @objc(updateContact:fcmToken:completion:) dynamic public func updateContact(_ contact: UserComSDK.Contact, fcmToken: Swift.String? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+}
+@available(iOSApplicationExtension, unavailable)
+extension UserComSDK.UserSDK {
+  @available(*, deprecated, message: "Use Contact.")
   public enum UserDataKey : Swift.String {
     case firstName
     case lastName
@@ -115,19 +138,32 @@ extension UserComSDK.UserSDK {
     case phone
     case userId
     public init?(rawValue: Swift.String)
+    @available(*, deprecated, message: "Use Contact.")
     @available(iOSApplicationExtension, unavailable)
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
     }
   }
+  @available(*, deprecated, message: "Use updateContact(_:fcmToken:_:). The SDK no longer keeps contact data.")
   public func setUserData(_ userData: [UserComSDK.UserSDK.UserDataKey : Swift.String?], fcmToken: Swift.String? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
+  @available(*, deprecated, message: "Use updateContact(_:fcmToken:_:) with attributes. The SDK no longer keeps contact data.")
   public func setCustomUserData(_ customUserData: [Swift.String : Any?], fcmToken: Swift.String? = nil, _ completion: ((Swift.Bool, (any Swift.Error)?) -> Swift.Void)? = nil)
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
   @objc(registerForRemoteNotificationsWithOptions:notificationDelegate:) dynamic public func registerForRemoteNotifications(options: UserNotifications.UNAuthorizationOptions, notificationDelegate: (any UserComSDK.RemoteNotificationDelegate)? = nil)
+  @discardableResult
+  @objc(handleNotification:) dynamic public func handleNotification(_ userInfo: [Swift.AnyHashable : Any]) -> Swift.Bool
+  @objc(handleNotificationClick:) dynamic public func handleNotificationClick(_ userInfo: [Swift.AnyHashable : Any])
+  @objc(isUserComNotification:) dynamic public func isUserComNotification(_ userInfo: [Swift.AnyHashable : Any]) -> Swift.Bool
+  @available(*, deprecated, message: "Pass received notifications to handleNotification(_:) and taps to handleNotificationClick(_:). This method counts every call as a click.")
   @objc(handleNotificationWithUserInfo:) dynamic public func handleNotification(userInfo: [Swift.AnyHashable : Any])
+}
+@available(iOSApplicationExtension, unavailable)
+extension UserComSDK.UserSDK {
+  @objc(handleEmailLink:completion:) dynamic public func handleEmailLink(_ url: Foundation.URL, _ completion: @escaping (Foundation.URL?) -> Swift.Void)
+  public func handleEmailLink(_ url: Foundation.URL) async -> Foundation.URL?
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
@@ -135,6 +171,7 @@ extension UserComSDK.UserSDK {
 }
 @available(iOSApplicationExtension, unavailable)
 extension UserComSDK.UserSDK {
+  @available(*, deprecated, message: "Internal ping body, to be removed in 2.0.")
   @objc dynamic public var userDataDictionary: [Swift.String : Any] {
     @objc get
   }
@@ -199,6 +236,33 @@ extension Swift.String {
     get
   }
 }
+public enum UserSDKError : Swift.Error, Swift.Equatable {
+  case notIdentified
+  case invalidName
+  case invalidData
+  case rejected(statusCode: Swift.Int)
+  case network
+  case notCollectingData
+  case invalidConfiguration
+  case loggedOut
+  public static func == (a: UserComSDK.UserSDKError, b: UserComSDK.UserSDKError) -> Swift.Bool
+}
+extension UserComSDK.UserSDKError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension UserComSDK.UserSDKError : Foundation.CustomNSError {
+  public static var errorDomain: Swift.String {
+    get
+  }
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
 @objc public protocol RemoteNotificationDelegate {
   @objc func didReceiveRemoteNotification(with id: Swift.String, data: [Swift.AnyHashable : Any])
 }
@@ -213,17 +277,30 @@ extension UIKit.UIViewController : UserComSDK.TrackableView {
   }
   @objc @_Concurrency.MainActor @preconcurrency dynamic public func trackScreen()
 }
+@objc(UserSDKContact) final public class Contact : ObjectiveC.NSObject {
+  @objc final public var userId: Swift.String?
+  @objc final public var email: Swift.String?
+  @objc final public var firstName: Swift.String?
+  @objc final public var lastName: Swift.String?
+  @objc final public var phoneNumber: Swift.String?
+  @objc final public var attributes: [Swift.String : Any]
+  @objc public init(userId: Swift.String? = nil, email: Swift.String? = nil, firstName: Swift.String? = nil, lastName: Swift.String? = nil, phoneNumber: Swift.String? = nil, attributes: [Swift.String : Any] = [:])
+  @objc deinit
+}
 @available(iOSApplicationExtension, unavailable)
-extension UserComSDK.UserSDK.EventType : Swift.Equatable {}
+extension UserComSDK.UserSDK.ProductEventType : Swift.Equatable {}
 @available(iOSApplicationExtension, unavailable)
-extension UserComSDK.UserSDK.EventType : Swift.Hashable {}
+extension UserComSDK.UserSDK.ProductEventType : Swift.Hashable {}
 @available(iOSApplicationExtension, unavailable)
-extension UserComSDK.UserSDK.EventType : Swift.RawRepresentable {}
+extension UserComSDK.UserSDK.ProductEventType : Swift.RawRepresentable {}
 @available(iOSApplicationExtension, unavailable)
+@available(*, deprecated, message: "Use Contact.")
 extension UserComSDK.UserSDK.UserDataKey : Swift.Equatable {}
 @available(iOSApplicationExtension, unavailable)
+@available(*, deprecated, message: "Use Contact.")
 extension UserComSDK.UserSDK.UserDataKey : Swift.Hashable {}
 @available(iOSApplicationExtension, unavailable)
+@available(*, deprecated, message: "Use Contact.")
 extension UserComSDK.UserSDK.UserDataKey : Swift.RawRepresentable {}
 extension UserComSDK.Reachability.Connection : Swift.Equatable {}
 extension UserComSDK.Reachability.Connection : Swift.Hashable {}
